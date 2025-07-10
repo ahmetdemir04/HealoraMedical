@@ -19,8 +19,8 @@ Healora, kişisel gelişim amacıyla prototip olarak geliştirilmiş, modüler y
 3. Açılan sihirbazda Next butonuna tıklayarak devam ediniz.<br>
 4. Proje klasörüne gidip database klasörünü açınız.<br>
 5. Bu klasörde yer alan DbHealoraMedical.bacpac dosyasını seçerek içeri aktarım işlemini tamamlayınız.<br>
-6. Ardından Visual Studio ortamında App.config dosyasını açınız.
-7. ConnectionStrings etkiketinin içerisindeki datasource kısmına kendi local data base isminizi yazınız.<br>
+6. Ardından Visual Studio ortamında App.config dosyasını açınız. <br>
+7. ConnectionStrings etkiketinin içerisindeki datasource kısmına kendi local data base isminizi yazınız. <br>
 
 Belirtilen adımları eksiksiz uyguladığınız takdirde proje sorunsuz bir şekilde çalışacaktır.
 
