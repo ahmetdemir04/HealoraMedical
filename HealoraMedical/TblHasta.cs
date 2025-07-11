@@ -17,7 +17,7 @@ namespace HealoraMedical
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TblHasta()
         {
-            this.TblHastaDetayı = new HashSet<TblHastaDetayı>();
+            this.TblHastaDetayis = new HashSet<TblHastaDetayi>();
             this.TblRandevus = new HashSet<TblRandevu>();
         }
     
@@ -33,7 +33,7 @@ namespace HealoraMedical
         public string cinsiyet { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblHastaDetayı> TblHastaDetayı { get; set; }
+        public virtual ICollection<TblHastaDetayi> TblHastaDetayis { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblRandevu> TblRandevus { get; set; }
     }

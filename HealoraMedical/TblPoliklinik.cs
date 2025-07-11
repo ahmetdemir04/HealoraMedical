@@ -17,16 +17,16 @@ namespace HealoraMedical
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TblPoliklinik()
         {
-            this.TblRandevus = new HashSet<TblRandevu>();
             this.TblDoktors = new HashSet<TblDoktor>();
+            this.TblRandevus = new HashSet<TblRandevu>();
         }
     
         public short PoliklinikNo { get; set; }
         public string PoliklinikAd { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblRandevu> TblRandevus { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblDoktor> TblDoktors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblRandevu> TblRandevus { get; set; }
     }
 }

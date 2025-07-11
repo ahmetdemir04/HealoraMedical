@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DbHealoraMedicalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DbHealoraMedicalModel5.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -58,29 +58,29 @@
           <Property Name="sifre" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="cinsiyet" Type="nvarchar" MaxLength="5" Nullable="false" />
         </EntityType>
-        <EntityType Name="TblHastaDetayı">
+        <EntityType Name="TblHastaDetayi">
           <Key>
             <PropertyRef Name="HastaDetayiId" />
           </Key>
           <Property Name="HastaDetayiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HastaTC" Type="char" MaxLength="11" Nullable="false" />
-          <Property Name="Yas" Type="tinyint" Nullable="false" />
-          <Property Name="Boy" Type="tinyint" Nullable="false" />
-          <Property Name="Kg" Type="smallint" Nullable="false" />
-          <Property Name="KanGrubu" Type="varchar" MaxLength="3" Nullable="false" />
-          <Property Name="Şeker" Type="bit" Nullable="false" />
-          <Property Name="Hipertansiyon" Type="bit" Nullable="false" />
-          <Property Name="Hipotansiyon" Type="bit" Nullable="false" />
-          <Property Name="Astım" Type="bit" Nullable="false" />
-          <Property Name="Hipotiroidi" Type="bit" Nullable="false" />
-          <Property Name="Hepatit B" Type="bit" Nullable="false" />
-          <Property Name="Hepatit C" Type="bit" Nullable="false" />
-          <Property Name="HIV" Type="bit" Nullable="false" />
-          <Property Name="AIDS" Type="bit" Nullable="false" />
-          <Property Name="Depresyon" Type="bit" Nullable="false" />
-          <Property Name="Alzheimer" Type="bit" Nullable="false" />
-          <Property Name="Epilepsi" Type="bit" Nullable="false" />
-          <Property Name="Parkinson" Type="bit" Nullable="false" />
+          <Property Name="Yas" Type="tinyint" />
+          <Property Name="Boy" Type="tinyint" />
+          <Property Name="Kg" Type="smallint" />
+          <Property Name="KanGrubu" Type="varchar" MaxLength="3" />
+          <Property Name="Şeker" Type="bit" />
+          <Property Name="Hipertansiyon" Type="bit" />
+          <Property Name="Hipotansiyon" Type="bit" />
+          <Property Name="Astım" Type="bit" />
+          <Property Name="Hipotiroidi" Type="bit" />
+          <Property Name="Hepatit B" Type="bit" />
+          <Property Name="Hepatit C" Type="bit" />
+          <Property Name="HIV" Type="bit" />
+          <Property Name="AIDS" Type="bit" />
+          <Property Name="Depresyon" Type="bit" />
+          <Property Name="Alzheimer" Type="bit" />
+          <Property Name="Epilepsi" Type="bit" />
+          <Property Name="Parkinson" Type="bit" />
         </EntityType>
         <EntityType Name="TblIlac">
           <Key>
@@ -161,12 +161,12 @@
         </Association>
         <Association Name="FK_TblHastaDetayı_TblHasta">
           <End Role="TblHasta" Type="Self.TblHasta" Multiplicity="1" />
-          <End Role="TblHastaDetayı" Type="Self.TblHastaDetayı" Multiplicity="*" />
+          <End Role="TblHastaDetayi" Type="Self.TblHastaDetayi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblHasta">
               <PropertyRef Name="TC" />
             </Principal>
-            <Dependent Role="TblHastaDetayı">
+            <Dependent Role="TblHastaDetayi">
               <PropertyRef Name="HastaTC" />
             </Dependent>
           </ReferentialConstraint>
@@ -262,13 +262,13 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="DbHealoraMedicalModelStoreContainer">
+        <EntityContainer Name="DbHealoraMedicalModel5StoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblBrans" EntityType="Self.TblBrans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDoktor" EntityType="Self.TblDoktor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDuyuru" EntityType="Self.TblDuyuru" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblHasta" EntityType="Self.TblHasta" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TblHastaDetayı" EntityType="Self.TblHastaDetayı" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblHastaDetayi" EntityType="Self.TblHastaDetayi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblIlac" EntityType="Self.TblIlac" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblPoliklinik" EntityType="Self.TblPoliklinik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblRandevu" EntityType="Self.TblRandevu" Schema="dbo" store:Type="Tables" />
@@ -284,7 +284,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_TblHastaDetayı_TblHasta" Association="Self.FK_TblHastaDetayı_TblHasta">
             <End Role="TblHasta" EntitySet="TblHasta" />
-            <End Role="TblHastaDetayı" EntitySet="TblHastaDetayı" />
+            <End Role="TblHastaDetayi" EntitySet="TblHastaDetayi" />
           </AssociationSet>
           <AssociationSet Name="FK_TblIlac_TblTedavi" Association="Self.FK_TblIlac_TblTedavi">
             <End Role="TblTedavi" EntitySet="TblTedavi" />
@@ -310,7 +310,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DbHealoraMedicalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DbHealoraMedicalModel5" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -341,8 +341,8 @@
           <Property Name="Poliklinik" Type="Int16" Nullable="false" />
           <Property Name="Durum" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TblBran" Relationship="Self.FK_TblDoktor_TblBrans" FromRole="TblDoktor" ToRole="TblBrans" />
+          <NavigationProperty Name="TblPoliklinik" Relationship="Self.FK_TblDoktor_TblPoliklinik" FromRole="TblDoktor" ToRole="TblPoliklinik" />
           <NavigationProperty Name="TblRandevus" Relationship="Self.FK_TblRandevu_TblDoktor" FromRole="TblDoktor" ToRole="TblRandevu" />
-          <NavigationProperty Name="TblPoliklinik" Relationship="DbHealoraMedicalModel.FK_TblDoktor_TblPoliklinik" FromRole="TblDoktor" ToRole="TblPoliklinik" />
         </EntityType>
         <EntityType Name="TblDuyuru">
           <Key>
@@ -367,33 +367,33 @@
           <Property Name="Dogum_Tarihi" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="cinsiyet" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TblHastaDetayı" Relationship="Self.FK_TblHastaDetayı_TblHasta" FromRole="TblHasta" ToRole="TblHastaDetayı" />
+          <NavigationProperty Name="TblHastaDetayis" Relationship="Self.FK_TblHastaDetayı_TblHasta" FromRole="TblHasta" ToRole="TblHastaDetayi" />
           <NavigationProperty Name="TblRandevus" Relationship="Self.FK_TblRandevu_TblHasta" FromRole="TblHasta" ToRole="TblRandevu" />
         </EntityType>
-        <EntityType Name="TblHastaDetayı">
+        <EntityType Name="TblHastaDetayi">
           <Key>
             <PropertyRef Name="HastaDetayiId" />
           </Key>
           <Property Name="HastaDetayiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HastaTC" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Yas" Type="Byte" Nullable="false" />
-          <Property Name="Boy" Type="Byte" Nullable="false" />
-          <Property Name="Kg" Type="Int16" Nullable="false" />
-          <Property Name="KanGrubu" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Şeker" Type="Boolean" Nullable="false" />
-          <Property Name="Hipertansiyon" Type="Boolean" Nullable="false" />
-          <Property Name="Hipotansiyon" Type="Boolean" Nullable="false" />
-          <Property Name="Astım" Type="Boolean" Nullable="false" />
-          <Property Name="Hipotiroidi" Type="Boolean" Nullable="false" />
-          <Property Name="Hepatit_B" Type="Boolean" Nullable="false" />
-          <Property Name="Hepatit_C" Type="Boolean" Nullable="false" />
-          <Property Name="HIV" Type="Boolean" Nullable="false" />
-          <Property Name="AIDS" Type="Boolean" Nullable="false" />
-          <Property Name="Depresyon" Type="Boolean" Nullable="false" />
-          <Property Name="Alzheimer" Type="Boolean" Nullable="false" />
-          <Property Name="Epilepsi" Type="Boolean" Nullable="false" />
-          <Property Name="Parkinson" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="TblHasta" Relationship="Self.FK_TblHastaDetayı_TblHasta" FromRole="TblHastaDetayı" ToRole="TblHasta" />
+          <Property Name="Yas" Type="Byte" />
+          <Property Name="Boy" Type="Byte" />
+          <Property Name="Kg" Type="Int16" />
+          <Property Name="KanGrubu" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Şeker" Type="Boolean" />
+          <Property Name="Hipertansiyon" Type="Boolean" />
+          <Property Name="Hipotansiyon" Type="Boolean" />
+          <Property Name="Astım" Type="Boolean" />
+          <Property Name="Hipotiroidi" Type="Boolean" />
+          <Property Name="Hepatit_B" Type="Boolean" />
+          <Property Name="Hepatit_C" Type="Boolean" />
+          <Property Name="HIV" Type="Boolean" />
+          <Property Name="AIDS" Type="Boolean" />
+          <Property Name="Depresyon" Type="Boolean" />
+          <Property Name="Alzheimer" Type="Boolean" />
+          <Property Name="Epilepsi" Type="Boolean" />
+          <Property Name="Parkinson" Type="Boolean" />
+          <NavigationProperty Name="TblHasta" Relationship="Self.FK_TblHastaDetayı_TblHasta" FromRole="TblHastaDetayi" ToRole="TblHasta" />
         </EntityType>
         <EntityType Name="TblIlac">
           <Key>
@@ -414,8 +414,8 @@
           </Key>
           <Property Name="PoliklinikNo" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PoliklinikAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TblDoktors" Relationship="Self.FK_TblDoktor_TblPoliklinik" FromRole="TblPoliklinik" ToRole="TblDoktor" />
           <NavigationProperty Name="TblRandevus" Relationship="Self.FK_TblRandevu_TblPoliklinik" FromRole="TblPoliklinik" ToRole="TblRandevu" />
-          <NavigationProperty Name="TblDoktors" Relationship="DbHealoraMedicalModel.FK_TblDoktor_TblPoliklinik" FromRole="TblPoliklinik" ToRole="TblDoktor" />
         </EntityType>
         <EntityType Name="TblRandevu">
           <Key>
@@ -469,6 +469,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TblDoktor_TblPoliklinik">
+          <End Role="TblPoliklinik" Type="Self.TblPoliklinik" Multiplicity="1" />
+          <End Role="TblDoktor" Type="Self.TblDoktor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblPoliklinik">
+              <PropertyRef Name="PoliklinikNo" />
+            </Principal>
+            <Dependent Role="TblDoktor">
+              <PropertyRef Name="Poliklinik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TblRandevu_TblDoktor">
           <End Role="TblDoktor" Type="Self.TblDoktor" Multiplicity="1" />
           <End Role="TblRandevu" Type="Self.TblRandevu" Multiplicity="*" />
@@ -483,12 +495,12 @@
         </Association>
         <Association Name="FK_TblHastaDetayı_TblHasta">
           <End Role="TblHasta" Type="Self.TblHasta" Multiplicity="1" />
-          <End Role="TblHastaDetayı" Type="Self.TblHastaDetayı" Multiplicity="*" />
+          <End Role="TblHastaDetayi" Type="Self.TblHastaDetayi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblHasta">
               <PropertyRef Name="TC" />
             </Principal>
-            <Dependent Role="TblHastaDetayı">
+            <Dependent Role="TblHastaDetayi">
               <PropertyRef Name="HastaTC" />
             </Dependent>
           </ReferentialConstraint>
@@ -547,7 +559,7 @@
           <EntitySet Name="TblDoktors" EntityType="Self.TblDoktor" />
           <EntitySet Name="TblDuyurus" EntityType="Self.TblDuyuru" />
           <EntitySet Name="TblHastas" EntityType="Self.TblHasta" />
-          <EntitySet Name="TblHastaDetayı" EntityType="Self.TblHastaDetayı" />
+          <EntitySet Name="TblHastaDetayis" EntityType="Self.TblHastaDetayi" />
           <EntitySet Name="TblIlacs" EntityType="Self.TblIlac" />
           <EntitySet Name="TblPolikliniks" EntityType="Self.TblPoliklinik" />
           <EntitySet Name="TblRandevus" EntityType="Self.TblRandevu" />
@@ -557,13 +569,17 @@
             <End Role="TblBrans" EntitySet="TblBrans" />
             <End Role="TblDoktor" EntitySet="TblDoktors" />
           </AssociationSet>
+          <AssociationSet Name="FK_TblDoktor_TblPoliklinik" Association="Self.FK_TblDoktor_TblPoliklinik">
+            <End Role="TblPoliklinik" EntitySet="TblPolikliniks" />
+            <End Role="TblDoktor" EntitySet="TblDoktors" />
+          </AssociationSet>
           <AssociationSet Name="FK_TblRandevu_TblDoktor" Association="Self.FK_TblRandevu_TblDoktor">
             <End Role="TblDoktor" EntitySet="TblDoktors" />
             <End Role="TblRandevu" EntitySet="TblRandevus" />
           </AssociationSet>
           <AssociationSet Name="FK_TblHastaDetayı_TblHasta" Association="Self.FK_TblHastaDetayı_TblHasta">
             <End Role="TblHasta" EntitySet="TblHastas" />
-            <End Role="TblHastaDetayı" EntitySet="TblHastaDetayı" />
+            <End Role="TblHastaDetayi" EntitySet="TblHastaDetayis" />
           </AssociationSet>
           <AssociationSet Name="FK_TblRandevu_TblHasta" Association="Self.FK_TblRandevu_TblHasta">
             <End Role="TblHasta" EntitySet="TblHastas" />
@@ -597,11 +613,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DbHealoraMedicalModel.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DbHealoraMedicalModel5.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DbHealoraMedicalModel.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DbHealoraMedicalModel5.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -611,10 +627,6 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <AssociationSet Name="FK_TblDoktor_TblPoliklinik" Association="DbHealoraMedicalModel.FK_TblDoktor_TblPoliklinik">
-            <End Role="TblPoliklinik" EntitySet="TblPolikliniks" />
-            <End Role="TblDoktor" EntitySet="TblDoktors" />
-          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -627,26 +639,14 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <Association Name="FK_TblDoktor_TblPoliklinik">
-          <End Type="DbHealoraMedicalModel.TblPoliklinik" Role="TblPoliklinik" Multiplicity="1" />
-          <End Type="DbHealoraMedicalModel.TblDoktor" Role="TblDoktor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TblPoliklinik">
-              <PropertyRef Name="PoliklinikNo" />
-            </Principal>
-            <Dependent Role="TblDoktor">
-              <PropertyRef Name="Poliklinik" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DbHealoraMedicalModelStoreContainer" CdmEntityContainer="DbHealoraMedicalEntities5">
+        <EntityContainerMapping StorageEntityContainer="DbHealoraMedicalModel5StoreContainer" CdmEntityContainer="DbHealoraMedicalEntities5">
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="DbHealoraMedicalModel.sysdiagram">
+            <EntityTypeMapping TypeName="DbHealoraMedicalModel5.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -657,7 +657,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblBrans">
-            <EntityTypeMapping TypeName="DbHealoraMedicalModel.TblBran">
+            <EntityTypeMapping TypeName="DbHealoraMedicalModel5.TblBran">
               <MappingFragment StoreEntitySet="TblBrans">
                 <ScalarProperty Name="BransId" ColumnName="BransId" />
                 <ScalarProperty Name="BransAd" ColumnName="BransAd" />
@@ -665,7 +665,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblDoktors">
-            <EntityTypeMapping TypeName="DbHealoraMedicalModel.TblDoktor">
+            <EntityTypeMapping TypeName="DbHealoraMedicalModel5.TblDoktor">
               <MappingFragment StoreEntitySet="TblDoktor">
                 <ScalarProperty Name="DrSicilNo" ColumnName="DrSicilNo" />
                 <ScalarProperty Name="DrAd" ColumnName="DrAd" />
@@ -678,7 +678,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblDuyurus">
-            <EntityTypeMapping TypeName="DbHealoraMedicalModel.TblDuyuru">
+            <EntityTypeMapping TypeName="DbHealoraMedicalModel5.TblDuyuru">
               <MappingFragment StoreEntitySet="TblDuyuru">
                 <ScalarProperty Name="DyrID" ColumnName="DyrID" />
                 <ScalarProperty Name="DyrBaslik" ColumnName="DyrBaslik" />
@@ -688,7 +688,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblHastas">
-            <EntityTypeMapping TypeName="DbHealoraMedicalModel.TblHasta">
+            <EntityTypeMapping TypeName="DbHealoraMedicalModel5.TblHasta">
               <MappingFragment StoreEntitySet="TblHasta">
                 <ScalarProperty Name="TC" ColumnName="TC" />
                 <ScalarProperty Name="Ad" ColumnName="Ad" />
@@ -703,9 +703,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblHastaDetayı">
-            <EntityTypeMapping TypeName="DbHealoraMedicalModel.TblHastaDetayı">
-              <MappingFragment StoreEntitySet="TblHastaDetayı">
+          <EntitySetMapping Name="TblHastaDetayis">
+            <EntityTypeMapping TypeName="DbHealoraMedicalModel5.TblHastaDetayi">
+              <MappingFragment StoreEntitySet="TblHastaDetayi">
                 <ScalarProperty Name="HastaDetayiId" ColumnName="HastaDetayiId" />
                 <ScalarProperty Name="HastaTC" ColumnName="HastaTC" />
                 <ScalarProperty Name="Yas" ColumnName="Yas" />
@@ -729,7 +729,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblIlacs">
-            <EntityTypeMapping TypeName="DbHealoraMedicalModel.TblIlac">
+            <EntityTypeMapping TypeName="DbHealoraMedicalModel5.TblIlac">
               <MappingFragment StoreEntitySet="TblIlac">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TedaviID" ColumnName="TedaviID" />
@@ -742,7 +742,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblPolikliniks">
-            <EntityTypeMapping TypeName="DbHealoraMedicalModel.TblPoliklinik">
+            <EntityTypeMapping TypeName="DbHealoraMedicalModel5.TblPoliklinik">
               <MappingFragment StoreEntitySet="TblPoliklinik">
                 <ScalarProperty Name="PoliklinikNo" ColumnName="PoliklinikNo" />
                 <ScalarProperty Name="PoliklinikAd" ColumnName="PoliklinikAd" />
@@ -750,7 +750,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblRandevus">
-            <EntityTypeMapping TypeName="DbHealoraMedicalModel.TblRandevu">
+            <EntityTypeMapping TypeName="DbHealoraMedicalModel5.TblRandevu">
               <MappingFragment StoreEntitySet="TblRandevu">
                 <ScalarProperty Name="RandevuId" ColumnName="RandevuId" />
                 <ScalarProperty Name="HastaTc" ColumnName="HastaTc" />
@@ -765,7 +765,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblSekreters">
-            <EntityTypeMapping TypeName="DbHealoraMedicalModel.TblSekreter">
+            <EntityTypeMapping TypeName="DbHealoraMedicalModel5.TblSekreter">
               <MappingFragment StoreEntitySet="TblSekreter">
                 <ScalarProperty Name="SktTC" ColumnName="SktTC" />
                 <ScalarProperty Name="SktAd" ColumnName="SktAd" />
@@ -777,7 +777,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblTedavis">
-            <EntityTypeMapping TypeName="DbHealoraMedicalModel.TblTedavi">
+            <EntityTypeMapping TypeName="DbHealoraMedicalModel5.TblTedavi">
               <MappingFragment StoreEntitySet="TblTedavi">
                 <ScalarProperty Name="TedaviID" ColumnName="TedaviID" />
                 <ScalarProperty Name="RandevuID" ColumnName="RandevuID" />
@@ -786,20 +786,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DbHealoraMedicalModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DbHealoraMedicalModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DbHealoraMedicalModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DbHealoraMedicalModel.Store.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DbHealoraMedicalModel5.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DbHealoraMedicalModel5.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DbHealoraMedicalModel5.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DbHealoraMedicalModel5.Store.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="DbHealoraMedicalModel.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="DbHealoraMedicalModel5.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DbHealoraMedicalModel.Store.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DbHealoraMedicalModel5.Store.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="DbHealoraMedicalModel.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="DbHealoraMedicalModel5.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -808,8 +808,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DbHealoraMedicalModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DbHealoraMedicalModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DbHealoraMedicalModel5.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DbHealoraMedicalModel5.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

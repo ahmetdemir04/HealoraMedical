@@ -29,8 +29,8 @@ namespace HealoraMedical
         public bool Durum { get; set; }
     
         public virtual TblBran TblBran { get; set; }
+        public virtual TblPoliklinik TblPoliklinik { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblRandevu> TblRandevus { get; set; }
-        public virtual TblPoliklinik TblPoliklinik { get; set; }
     }
 }

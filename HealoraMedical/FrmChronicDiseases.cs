@@ -22,9 +22,9 @@ namespace HealoraMedical
         DbHealoraMedicalEntities5 db = new DbHealoraMedicalEntities5();
         void ListAllChronicInformation()
         {
-            if (db.TblHastaDetayı.Any(x => x.HastaTC == TC))
+            if (db.TblHastaDetayis.Any(x => x.HastaTC == TC))
             {
-                var ListAllChronic = db.TblHastaDetayı.Where(x => x.HastaTC == TC).Select(x => new
+                var ListAllChronic = db.TblHastaDetayis.Where(x => x.HastaTC == TC).Select(x => new
                 {
                     x.HastaTC,
                     x.KanGrubu,

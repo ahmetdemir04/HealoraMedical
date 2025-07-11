@@ -24,7 +24,7 @@ namespace HealoraMedical
         {
             var QueryGender = db.TblHastas.Where(x => x.TC == TC).Select(x => new { x.cinsiyet }).FirstOrDefault();
            
-            var QueryPrsInfo = db.TblHastaDetayı.Where(x => x.HastaTC == TC).Select(x => new
+            var QueryPrsInfo = db.TblHastaDetayis.Where(x => x.HastaTC == TC).Select(x => new
             {
                 x.Yas,
                 x.Boy,

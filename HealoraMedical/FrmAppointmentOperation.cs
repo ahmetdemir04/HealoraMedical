@@ -44,6 +44,7 @@ namespace HealoraMedical
                 (combined, poliklinik) => new
                 {
                     ID = combined.randevu.RandevuId,
+                    PoliklinikId =poliklinik.PoliklinikNo,
                     Poliklinik = poliklinik.PoliklinikAd,
                     DoktorSicilNo = combined.doktor.DrSicilNo,
                     Doktor = combined.doktor.DrAd + " " + combined.doktor.DrSoyad,

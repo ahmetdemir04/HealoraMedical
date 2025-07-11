@@ -36,6 +36,7 @@
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gridPatient = new System.Windows.Forms.DataGridView();
+            this.DtBirthday = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
             this.TxtSize = new Guna.UI2.WinForms.Guna2TextBox();
             this.CmbBloodType = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -70,7 +71,6 @@
             this.TxtSurname = new Guna.UI2.WinForms.Guna2TextBox();
             this.BtnAddPatient = new Guna.UI2.WinForms.Guna2GradientButton();
             this.BtnExit = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.DtBirthday = new Guna.UI2.WinForms.Guna2DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -181,6 +181,22 @@
             this.gridPatient.TabIndex = 2;
             this.gridPatient.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPatient_CellClick);
             // 
+            // DtBirthday
+            // 
+            this.DtBirthday.BorderRadius = 10;
+            this.DtBirthday.Checked = true;
+            this.DtBirthday.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(91)))), ((int)(((byte)(150)))));
+            this.DtBirthday.Font = new System.Drawing.Font("Lato", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtBirthday.ForeColor = System.Drawing.Color.White;
+            this.DtBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.DtBirthday.Location = new System.Drawing.Point(126, 195);
+            this.DtBirthday.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.DtBirthday.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.DtBirthday.Name = "DtBirthday";
+            this.DtBirthday.Size = new System.Drawing.Size(192, 31);
+            this.DtBirthday.TabIndex = 5;
+            this.DtBirthday.Value = new System.DateTime(2025, 6, 20, 12, 24, 44, 50);
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -213,7 +229,7 @@
             this.TxtSize.PlaceholderText = "";
             this.TxtSize.SelectedText = "";
             this.TxtSize.Size = new System.Drawing.Size(194, 22);
-            this.TxtSize.TabIndex = 79;
+            this.TxtSize.TabIndex = 12;
             // 
             // CmbBloodType
             // 
@@ -238,7 +254,7 @@
             this.CmbBloodType.Location = new System.Drawing.Point(752, 22);
             this.CmbBloodType.Name = "CmbBloodType";
             this.CmbBloodType.Size = new System.Drawing.Size(193, 23);
-            this.CmbBloodType.TabIndex = 78;
+            this.CmbBloodType.TabIndex = 10;
             // 
             // label7
             // 
@@ -285,7 +301,7 @@
             this.TxtKg.PlaceholderText = "";
             this.TxtKg.SelectedText = "";
             this.TxtKg.Size = new System.Drawing.Size(194, 22);
-            this.TxtKg.TabIndex = 75;
+            this.TxtKg.TabIndex = 11;
             // 
             // label9
             // 
@@ -376,7 +392,7 @@
             this.TxtFindPatient.PlaceholderText = "";
             this.TxtFindPatient.SelectedText = "";
             this.TxtFindPatient.Size = new System.Drawing.Size(194, 22);
-            this.TxtFindPatient.TabIndex = 69;
+            this.TxtFindPatient.TabIndex = 15;
             this.TxtFindPatient.TextChanged += new System.EventHandler(this.TxtFindPatient_TextChanged);
             // 
             // CmbCinsiyet
@@ -396,7 +412,7 @@
             this.CmbCinsiyet.Location = new System.Drawing.Point(415, 56);
             this.CmbCinsiyet.Name = "CmbCinsiyet";
             this.CmbCinsiyet.Size = new System.Drawing.Size(193, 23);
-            this.CmbCinsiyet.TabIndex = 68;
+            this.CmbCinsiyet.TabIndex = 7;
             // 
             // label13
             // 
@@ -427,7 +443,7 @@
             this.CmbSGK.Location = new System.Drawing.Point(414, 23);
             this.CmbSGK.Name = "CmbSGK";
             this.CmbSGK.Size = new System.Drawing.Size(193, 23);
-            this.CmbSGK.TabIndex = 66;
+            this.CmbSGK.TabIndex = 6;
             // 
             // TxtPhone
             // 
@@ -449,7 +465,7 @@
             this.TxtPhone.PlaceholderText = "";
             this.TxtPhone.SelectedText = "";
             this.TxtPhone.Size = new System.Drawing.Size(194, 22);
-            this.TxtPhone.TabIndex = 64;
+            this.TxtPhone.TabIndex = 3;
             // 
             // label10
             // 
@@ -495,7 +511,7 @@
             this.TxtPassword.PlaceholderText = "";
             this.TxtPassword.SelectedText = "";
             this.TxtPassword.Size = new System.Drawing.Size(194, 22);
-            this.TxtPassword.TabIndex = 59;
+            this.TxtPassword.TabIndex = 8;
             // 
             // label12
             // 
@@ -530,7 +546,7 @@
             this.TxtAddress.PlaceholderText = "";
             this.TxtAddress.SelectedText = "";
             this.TxtAddress.Size = new System.Drawing.Size(194, 98);
-            this.TxtAddress.TabIndex = 60;
+            this.TxtAddress.TabIndex = 9;
             // 
             // BtnUpdatePatient
             // 
@@ -548,7 +564,7 @@
             this.BtnUpdatePatient.Location = new System.Drawing.Point(768, 172);
             this.BtnUpdatePatient.Name = "BtnUpdatePatient";
             this.BtnUpdatePatient.Size = new System.Drawing.Size(166, 36);
-            this.BtnUpdatePatient.TabIndex = 46;
+            this.BtnUpdatePatient.TabIndex = 14;
             this.BtnUpdatePatient.Text = "Hasta Güncelle";
             this.BtnUpdatePatient.Click += new System.EventHandler(this.BtnUpdatePatient_Click);
             // 
@@ -637,7 +653,7 @@
             this.TxtTC.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.TxtTC.Location = new System.Drawing.Point(123, 27);
             this.TxtTC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.TxtTC.MaxLength = 16;
+            this.TxtTC.MaxLength = 11;
             this.TxtTC.Name = "TxtTC";
             this.TxtTC.PlaceholderText = "";
             this.TxtTC.SelectedText = "";
@@ -728,7 +744,7 @@
             this.BtnAddPatient.Location = new System.Drawing.Point(768, 129);
             this.BtnAddPatient.Name = "BtnAddPatient";
             this.BtnAddPatient.Size = new System.Drawing.Size(166, 36);
-            this.BtnAddPatient.TabIndex = 33;
+            this.BtnAddPatient.TabIndex = 13;
             this.BtnAddPatient.Text = "Hasta Ekle";
             this.BtnAddPatient.Click += new System.EventHandler(this.BtnAddPatient_Click);
             // 
@@ -751,22 +767,6 @@
             this.BtnExit.TabIndex = 22;
             this.BtnExit.Text = "X";
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
-            // 
-            // DtBirthday
-            // 
-            this.DtBirthday.BorderRadius = 10;
-            this.DtBirthday.Checked = true;
-            this.DtBirthday.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(91)))), ((int)(((byte)(150)))));
-            this.DtBirthday.Font = new System.Drawing.Font("Lato", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DtBirthday.ForeColor = System.Drawing.Color.White;
-            this.DtBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.DtBirthday.Location = new System.Drawing.Point(126, 195);
-            this.DtBirthday.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.DtBirthday.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.DtBirthday.Name = "DtBirthday";
-            this.DtBirthday.Size = new System.Drawing.Size(192, 31);
-            this.DtBirthday.TabIndex = 81;
-            this.DtBirthday.Value = new System.DateTime(2025, 6, 20, 12, 24, 44, 50);
             // 
             // FrmPatientOperations
             // 

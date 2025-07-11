@@ -68,9 +68,11 @@ namespace HealoraMedical
                 string.IsNullOrEmpty(TxtPassword.Text) ||
                 string.IsNullOrEmpty(TxtAddress.Text) ||
                 string.IsNullOrEmpty(TxtMail.Text) ||
-                string.IsNullOrEmpty(CmbBloodType.Text) || 
-                string.IsNullOrEmpty(TxtKg.Text) || 
-                string.IsNullOrEmpty(TxtSize.Text))
+                string.IsNullOrEmpty(CmbBloodType.Text) ||
+                string.IsNullOrEmpty(TxtKg.Text) ||
+                string.IsNullOrEmpty(TxtSize.Text) || 
+                Convert.ToInt16(TxtKg.Text ) < 20 || 
+                Convert.ToInt16(TxtSize.Text) < 70 )
             {
                 return false;
             }
@@ -94,15 +96,8 @@ namespace HealoraMedical
         }
         private void ListAllPatients()
         {
-            //var ListAllPatients = db.TblHastas.Select(x => new
-            //{
-            //
-
-            //}
-            //).ToList();
-
             var ListAllPatients = (from patient in db.TblHastas
-                                  from detail in db.TblHastaDetayı
+                                  from detail in db.TblHastaDetayis
                                   where patient.TC == detail.HastaTC
                                   select new
                                   {
@@ -120,8 +115,6 @@ namespace HealoraMedical
                                       Boy = detail.Boy,
 
                                   }).ToList();
-
-
             gridPatient.DataSource = ListAllPatients;
         }
 
@@ -140,9 +133,7 @@ namespace HealoraMedical
             {
                 string tc = TxtTC.Text;
                 var findtc = db.TblHastas.Find(tc);
-                var findtc2 = db.TblHastaDetayı.FirstOrDefault(x => x.HastaTC == tc);
-
-
+                var findtc2 = db.TblHastaDetayis.FirstOrDefault(x => x.HastaTC == tc);
                 
                 if (findtc != null && findtc2 != null)
                 {
@@ -186,11 +177,11 @@ namespace HealoraMedical
         private void BtnAddPatient_Click(object sender, EventArgs e)
         {
             TblHasta tHasta = new TblHasta();
-            TblHastaDetayı tDetay = new TblHastaDetayı();
+    
 
             if (CheckAllFields())
             {
-                string tc = TxtTC.Text;
+                string tc = TxtTC.Text.Trim();
 
 
                 tHasta.TC = tc;
@@ -204,20 +195,22 @@ namespace HealoraMedical
                 tHasta.sifre = TxtPassword.Text;
                 tHasta.Adres = TxtAddress.Text.Trim();
 
-                tDetay.Yas =  Convert.ToByte(DateTime.Now.Year - Convert.ToDateTime(DtBirthday.Text).Year);
-                tDetay.KanGrubu = CmbBloodType.SelectedItem.ToString();
-                tDetay.Kg = Convert.ToByte(TxtKg.Text);
-                tDetay.Boy = Convert.ToByte(TxtSize.Text);
 
 
                 if (!db.TblHastas.Any(x => x.TC == tc))
                 {
                     db.TblHastas.Add(tHasta);
-                    db.TblHastaDetayı.Add(tDetay);
-
-
                     db.SaveChanges();
 
+                    var related_patient  = db.TblHastaDetayis.FirstOrDefault(x => x.HastaTC == tc);
+
+
+                    related_patient.Yas = Convert.ToByte(DateTime.Now.Year - Convert.ToDateTime(DtBirthday.Text).Year);
+                    related_patient.KanGrubu = CmbBloodType.SelectedItem.ToString();
+                    related_patient.Kg = Convert.ToByte(TxtKg.Text);
+                    related_patient.Boy = Convert.ToByte(TxtSize.Text);
+                      
+                    db.SaveChanges();
 
                     ListAllPatients();
                     ClearAllFields();
@@ -234,11 +227,6 @@ namespace HealoraMedical
             {
                 MessageBox.Show("Yeni hasta kayıtı eklemek için bütün alanları doldurmanız gerekiyor!", "Healore Medical", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-
-
-
-
         }
 
         private void gridPatient_CellClick(object sender, DataGridViewCellEventArgs e)

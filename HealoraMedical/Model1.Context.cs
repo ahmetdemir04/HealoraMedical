@@ -32,7 +32,7 @@ namespace HealoraMedical
         public virtual DbSet<TblDoktor> TblDoktors { get; set; }
         public virtual DbSet<TblDuyuru> TblDuyurus { get; set; }
         public virtual DbSet<TblHasta> TblHastas { get; set; }
-        public virtual DbSet<TblHastaDetayı> TblHastaDetayı { get; set; }
+        public virtual DbSet<TblHastaDetayi> TblHastaDetayis { get; set; }
         public virtual DbSet<TblIlac> TblIlacs { get; set; }
         public virtual DbSet<TblPoliklinik> TblPolikliniks { get; set; }
         public virtual DbSet<TblRandevu> TblRandevus { get; set; }
