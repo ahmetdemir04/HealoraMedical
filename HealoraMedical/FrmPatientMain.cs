@@ -1,6 +1,4 @@
-﻿using DevExpress.XtraBars.Painters;
-using DevExpress.XtraLayout.Painting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

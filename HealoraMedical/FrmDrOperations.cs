@@ -1,7 +1,4 @@
-﻿using DevExpress.Utils;
-using DevExpress.XtraEditors.Filtering.Internal;
-using DevExpress.XtraPrinting.Shape.Native;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
