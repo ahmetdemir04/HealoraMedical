@@ -289,37 +289,30 @@ namespace HealoraMedical
 
         private void TxtFindPatient_TextChanged(object sender, EventArgs e)
         {
-            IQueryable<HealoraMedical.TblHasta> query = db.TblHastas; // Start with the base query
+            var list = (from hasta in db.TblHastas
+                        join detay in db.TblHastaDetayis on hasta.TC equals detay.HastaTC
+                        where (!ChcName.Checked && !ChcTC.Checked) ||
+                              (ChcName.Checked && hasta.Ad.Contains(TxtFindPatient.Text)) ||
+                              (ChcTC.Checked && hasta.TC.Contains(TxtFindPatient.Text))
+                        select new
+                        {
+                            TC = hasta.TC,
+                            Cinsiyet = hasta.cinsiyet,
+                            AdSoyad = hasta.Ad + " " + hasta.Soyad,
+                            Telefon = hasta.Telefon,
+                            Email = hasta.Email,
+                            DoğumTarihi = hasta.Dogum_Tarihi,
+                            SGK = hasta.SGK,
+                            Şifre = hasta.sifre,
+                            Adres = hasta.Adres,
 
-            if (ChcName.Checked)
-            {
-                query = query.Where(x => x.Ad.Contains(TxtFindPatient.Text));
-            }
-            else if (ChcTC.Checked)
-            {
-                query = query.Where(x => x.TC.Contains(TxtFindPatient.Text));
-            }
-            else
-            {
-                // If neither checkbox is enabled, maybe don't filter, or filter by a default.
-                // For example, if you want to show all patients when nothing is selected, you don't need to do anything here.
-                // Or, if you want to explicitly show an empty list:
-                query = query.Where(x => false); // This will result in an empty list.
-            }
+                            // Detay tablosundan gelen alanlar
+                            KanGrubu = detay.KanGrubu,
+                            Kilo = detay.Kg,
+                            Boy = detay.Boy
 
-            // Now, execute the query and select the desired properties once.
-            var list = query.Select(x => new
-            {
-                TC = x.TC,
-                Cinsiyet = x.cinsiyet,
-                AdSoyad = x.Ad + " " + x.Soyad,
-                Telefon = x.Telefon,
-                Email = x.Email,
-                DoğumTarihi = x.Dogum_Tarihi,
-                SGK = x.SGK,
-                Şifre = x.sifre,
-                Adres = x.Adres
-            }).ToList();
+                        }).ToList();
+
 
             gridPatient.DataSource = list;
 

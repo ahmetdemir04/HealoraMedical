@@ -83,13 +83,13 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(960, 534);
-            this.splitContainer1.SplitterDistance = 28;
+            this.splitContainer1.SplitterDistance = 27;
             this.splitContainer1.TabIndex = 0;
             // 
             // pHeader
             // 
+            this.pHeader.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pHeader.Controls.Add(this.BtnExit);
-            this.pHeader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pHeader.Location = new System.Drawing.Point(0, 0);
             this.pHeader.Name = "pHeader";
             this.pHeader.Size = new System.Drawing.Size(960, 28);
@@ -99,7 +99,7 @@
             // 
             // BtnExit
             // 
-            this.BtnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnExit.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.BtnExit.Animated = true;
             this.BtnExit.BackColor = System.Drawing.Color.Transparent;
             this.BtnExit.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -140,7 +140,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.label3);
             this.splitContainer2.Panel2.Controls.Add(this.BtnFilitrele);
             this.splitContainer2.Panel2.Controls.Add(this.DtStart);
-            this.splitContainer2.Size = new System.Drawing.Size(960, 502);
+            this.splitContainer2.Size = new System.Drawing.Size(960, 503);
             this.splitContainer2.SplitterDistance = 295;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -148,6 +148,9 @@
             // 
             this.gridAppotiment.AllowUserToAddRows = false;
             this.gridAppotiment.AllowUserToDeleteRows = false;
+            this.gridAppotiment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridAppotiment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridAppotiment.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(80)))), ((int)(((byte)(107)))));
             this.gridAppotiment.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
@@ -170,7 +173,6 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridAppotiment.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gridAppotiment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridAppotiment.EnableHeadersVisualStyles = false;
             this.gridAppotiment.Location = new System.Drawing.Point(0, 0);
             this.gridAppotiment.Name = "gridAppotiment";

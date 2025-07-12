@@ -310,6 +310,7 @@ namespace HealoraMedical
         private void BtnDrOperations_Click(object sender, EventArgs e)
         {
             FrmDrOperations frmDrAdd = new FrmDrOperations();
+            frmDrAdd.DoctorAdded += (s, ev) => ListDr();
             frmDrAdd.ShowDialog();
         }
         #endregion
@@ -340,10 +341,6 @@ namespace HealoraMedical
             timer1.Stop();
         }
         #endregion
-        private void gridAppotiment_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void txtTc_KeyDown(object sender, KeyEventArgs e)
         {

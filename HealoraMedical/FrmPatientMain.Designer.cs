@@ -531,7 +531,6 @@
             // 
             // RdFutureApoint
             // 
-            this.RdFutureApoint.Checked = true;
             this.RdFutureApoint.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.RdFutureApoint.CheckedState.BorderThickness = 0;
             this.RdFutureApoint.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
@@ -561,6 +560,7 @@
             // 
             // RdAllApoint
             // 
+            this.RdAllApoint.Checked = true;
             this.RdAllApoint.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.RdAllApoint.CheckedState.BorderThickness = 0;
             this.RdAllApoint.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));

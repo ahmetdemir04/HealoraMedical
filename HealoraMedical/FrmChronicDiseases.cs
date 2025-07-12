@@ -44,8 +44,6 @@ namespace HealoraMedical
                 }).FirstOrDefault();
 
 
-
-
                 LblTc.Text = ListAllChronic.HastaTC;
                 LblBloodGroup.Text = ListAllChronic.KanGrubu;
 

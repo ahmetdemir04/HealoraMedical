@@ -20,13 +20,8 @@ namespace HealoraMedical
             TxtDuration.KeyPress += ClsInputHelper.OnlyNumeric;
             TxtDuration.TextChanged += ClsInputHelper.OnlyNumeric_TextChanged;
 
-
-            TxtDose.KeyPress += ClsInputHelper.OnlyAlphabetic;
-            TxtDose.TextChanged += ClsInputHelper.OnlyText_TextChanged;
-
             CmbUsage.KeyPress += ClsInputHelper.OnlyAlphabetic;
             CmbUsage.TextChanged += ClsInputHelper.OnlyText_TextChanged;
-
 
             CmbUsageInst.KeyPress += ClsInputHelper.OnlyAlphabetic;
             CmbUsageInst.TextChanged += ClsInputHelper.OnlyText_TextChanged;

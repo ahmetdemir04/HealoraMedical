@@ -27,20 +27,19 @@ namespace HealoraMedical
         DbHealoraMedicalEntities5 db = new DbHealoraMedicalEntities5();
         private bool CheckAllFields()
         {
-            if (string.IsNullOrWhiteSpace(TxtSicilNo.Text) ||
-                string.IsNullOrWhiteSpace(TxtName.Text) ||
-                string.IsNullOrWhiteSpace(TxtSurname.Text) ||
-                string.IsNullOrWhiteSpace(TxtPassword.Text) ||
-                CmbBranch.SelectedIndex != -1 ||
+            if (!string.IsNullOrWhiteSpace(TxtSicilNo.Text) &&
+                !string.IsNullOrWhiteSpace(TxtName.Text) &&
+                !string.IsNullOrWhiteSpace(TxtSurname.Text) &&
+                !string.IsNullOrWhiteSpace(TxtPassword.Text) &&
+                CmbBranch.SelectedIndex != -1 &&
                 CmbPolyclinic.SelectedIndex != -1)
             {
-
-                MessageBox.Show("Lütfen tüm alanları doldurun.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                return true;
             }
             else
             {
-                return true;
+               MessageBox.Show("Lütfen tüm alanları doldurun.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
         }
         private void ListAllDr(string which = "all")
@@ -126,13 +125,13 @@ namespace HealoraMedical
 
             ListAllDr(); ListAllBranch(); ListAllPolyclinic();
         }
-
+        public event EventHandler DoctorAdded;
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             if (CheckAllFields())
             {
-                var Find = db.TblDoktors.Find(TxtSicilNo.Text);
-                string SicilNO = Convert.ToString(Find);
+          
+                string SicilNO = TxtSicilNo.Text.Trim();
 
 
                 if (db.TblDoktors.Any(x => x.DrSicilNo == SicilNO))
@@ -149,10 +148,15 @@ namespace HealoraMedical
                     tDr.DrSifre = TxtPassword.Text.Trim();
                     tDr.Poliklinik = Convert.ToByte(CmbPolyclinic.SelectedValue);
                     tDr.DrBrans = Convert.ToByte(CmbBranch.SelectedValue);
+                    tDr.Durum = true;
 
                     db.TblDoktors.Add(tDr);
-
+            
                     db.SaveChanges();
+                    
+                    DoctorAdded?.Invoke(this, EventArgs.Empty);
+
+
                     ListAllDr();
                     MessageBox.Show("Doktor başarıyla eklendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

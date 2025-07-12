@@ -43,6 +43,7 @@ namespace HealoraMedical
 
         private void BringPersonalInfo()
         {
+            gridPatient.DataSource = null;
             var QueryNameSurname = db.TblHastas.Where(x => x.TC == TC).Select(x => new
             {
                 FullName = x.Ad + " " + x.Soyad,
@@ -58,6 +59,7 @@ namespace HealoraMedical
 
         private void BringAllApointments()
         {
+            gridPatient.DataSource = null;
             var appointment_query = db.TblRandevus.Where(x => x.TblHasta.TC == TC && x.Durum == true).Select(x =>
             new
             {
@@ -72,6 +74,7 @@ namespace HealoraMedical
 
         private void BringPastApointments()
         {
+            gridPatient.DataSource = null;
             var appointment_query = db.TblRandevus.Where(x => x.TblHasta.TC == TC && x.Durum == true && x.RandevuTarihi < DateTime.Today && x.Geldimi == null).Select(x =>
         new
         {

@@ -66,9 +66,12 @@ namespace HealoraMedical
         }
         private void FrmPatientGetApointment_Load(object sender, EventArgs e)
         {
+
             ListNotTakenAppotiment();
             ListDr();
 
+
+            DtStart.Value = DateTime.Today;
             gridAppotiment.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
         }
@@ -169,31 +172,37 @@ namespace HealoraMedical
 
         private void BtnGetApointment_Click(object sender, EventArgs e)
         {
-
             if (RandevuID != null)
             {
                 var tApointment = db.TblRandevus.FirstOrDefault(x => x.RandevuId == RandevuID);
 
                 if (tApointment != null)
                 {
-
-                    DialogResult result = MessageBox.Show($"{RandevuID} Numarasına sahip olan randevuyu almak istediğinize emin misiniz?", "HealOraMedical", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (result == DialogResult.Yes)
+                    if (!string.IsNullOrEmpty(TxtSymptom.Text))
                     {
-                        tApointment.Durum = true;
-                        tApointment.HastaTc = TC;
+                        DialogResult result = MessageBox.Show($"{RandevuID} Numarasına sahip olan randevuyu almak istediğinize emin misiniz?", "HealOraMedical", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        db.SaveChanges();
+                        if (result == DialogResult.Yes)
+                        {
+                            tApointment.Durum = true;
+                            tApointment.HastaTc = TC;
 
-                        MessageBox.Show("Randevu oluşturuldu!", "HealOraMedical", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            db.SaveChanges();
+
+                            MessageBox.Show("Randevu oluşturuldu!", "HealOraMedical", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Randevu talebi iptal başarıyla iptal edildi.", "HealOraMedical", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        CmbDr.SelectedIndex = -1;
+                        TxtSymptom.Clear();
+
                     }
                     else
                     {
-                        MessageBox.Show("Randevu talebi iptal başarıyla iptal edildi.", "HealOraMedical", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Lütfen şikayet alanını doldurunuz!", "HealOraMedical", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                    CmbDr.SelectedIndex = -1;
-                    TxtSymptom.Clear();
 
                 }
                 else

@@ -61,6 +61,9 @@ namespace HealoraMedical
 
         private void FrmAppointmentOperation_Load(object sender, EventArgs e)
         {
+            DtApointDate.Value = DateTime.Today;
+
+
             gridAppointment.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             ListAllAppointment();

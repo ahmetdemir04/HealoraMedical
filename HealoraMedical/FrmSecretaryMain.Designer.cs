@@ -562,7 +562,6 @@
             this.gridAppotiment.RowHeadersVisible = false;
             this.gridAppotiment.Size = new System.Drawing.Size(873, 309);
             this.gridAppotiment.TabIndex = 0;
-            this.gridAppotiment.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAppotiment_CellContentClick);
             // 
             // panel2
             // 
