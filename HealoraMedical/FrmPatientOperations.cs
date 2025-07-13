@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -70,15 +71,31 @@ namespace HealoraMedical
                 string.IsNullOrEmpty(TxtMail.Text) ||
                 string.IsNullOrEmpty(CmbBloodType.Text) ||
                 string.IsNullOrEmpty(TxtKg.Text) ||
-                string.IsNullOrEmpty(TxtSize.Text) || 
-                Convert.ToInt16(TxtKg.Text ) < 20 || 
-                Convert.ToInt16(TxtSize.Text) < 70 )
+                string.IsNullOrEmpty(TxtSize.Text)
+                )
             {
                 return false;
             }
             else
             {
                 return true;
+            }
+        }
+
+        private bool CheckMinReq()
+        {
+
+            int kg = Convert.ToInt16(TxtKg.Text);
+            int size = Convert.ToInt16(TxtSize.Text);
+
+            if (kg > 40 && kg < 500 &&
+                size > 70 && size < 272)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         private void ClearAllFields()
@@ -131,40 +148,49 @@ namespace HealoraMedical
         {
             if (CheckAllFields())
             {
-                string tc = TxtTC.Text;
-                var findtc = db.TblHastas.Find(tc);
-                var findtc2 = db.TblHastaDetayis.FirstOrDefault(x => x.HastaTC == tc);
-                
-                if (findtc != null && findtc2 != null)
+                if (CheckMinReq())
                 {
-                    findtc.cinsiyet = CmbCinsiyet.SelectedItem.ToString();
-                    findtc.Ad = TxtName.Text;
-                    findtc.Soyad = TxtSurname.Text;
-                    findtc.Telefon = TxtPhone.Text;
-                    findtc.Email = TxtMail.Text;
-                    if (DateTime.TryParse(DtBirthday.Text, out DateTime parsedDate))
+
+                    string tc = TxtTC.Text;
+                    var findtc = db.TblHastas.Find(tc);
+                    var findtc2 = db.TblHastaDetayis.FirstOrDefault(x => x.HastaTC == tc);
+
+                    if (findtc != null && findtc2 != null)
                     {
-                        findtc.Dogum_Tarihi = parsedDate;
+                        findtc.cinsiyet = CmbCinsiyet.SelectedItem.ToString();
+                        findtc.Ad = TxtName.Text;
+                        findtc.Soyad = TxtSurname.Text;
+                        findtc.Telefon = TxtPhone.Text;
+                        findtc.Email = TxtMail.Text;
+                        if (DateTime.TryParse(DtBirthday.Text, out DateTime parsedDate))
+                        {
+                            findtc.Dogum_Tarihi = parsedDate;
+                        }
+
+                        findtc.Dogum_Tarihi = Convert.ToDateTime(DtBirthday.Text);
+                        findtc.SGK = CmbSGK.SelectedItem.ToString() == "Var" ? true : false;
+                        findtc.sifre = TxtPassword.Text;
+                        findtc.Adres = TxtAddress.Text.Trim();
+
+                        findtc2.Yas = Convert.ToByte(DateTime.Now.Year - Convert.ToDateTime(DtBirthday.Text).Year);
+                        findtc2.KanGrubu = CmbBloodType.SelectedItem.ToString();
+                        findtc2.Kg = Convert.ToByte(TxtKg.Text);
+
+
+
+                        db.SaveChanges();
+                        ListAllPatients();
+                        ClearAllFields();
+
+                        MessageBox.Show("Hasta Bilgileri Güncellendi", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    
-                    findtc.Dogum_Tarihi = Convert.ToDateTime(DtBirthday.Text);
-                    findtc.SGK = CmbSGK.SelectedItem.ToString() == "Var" ? true : false;
-                    findtc.sifre = TxtPassword.Text;
-                    findtc.Adres = TxtAddress.Text.Trim();
 
-                    findtc2.Yas = Convert.ToByte(DateTime.Now.Year - Convert.ToDateTime(DtBirthday.Text).Year);
-                    findtc2.KanGrubu = CmbBloodType.SelectedItem.ToString();
-                    findtc2.Kg = Convert.ToByte(TxtKg.Text);
-
-
-
-                    db.SaveChanges();
-                    ListAllPatients();
-                    ClearAllFields();
-
-                    MessageBox.Show("Hasta Bilgileri Güncellendi", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-             
+                else
+                {
+                    MessageBox.Show("Kg veya boy değeri minumum ya da maximum aralığı dışında!", "Healore Medical", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
 
             }
             else
@@ -181,46 +207,55 @@ namespace HealoraMedical
 
             if (CheckAllFields())
             {
-                string tc = TxtTC.Text.Trim();
 
-
-                tHasta.TC = tc;
-                tHasta.cinsiyet = CmbCinsiyet.SelectedItem.ToString();
-                tHasta.Ad = TxtName.Text;
-                tHasta.Soyad = TxtSurname.Text;
-                tHasta.Telefon = TxtPhone.Text;
-                tHasta.Email = TxtMail.Text;
-                tHasta.Dogum_Tarihi = Convert.ToDateTime(DtBirthday.Text);
-                tHasta.SGK = CmbSGK.SelectedItem.ToString() == "Var" ? true : false;
-                tHasta.sifre = TxtPassword.Text;
-                tHasta.Adres = TxtAddress.Text.Trim();
-
-
-
-                if (!db.TblHastas.Any(x => x.TC == tc))
+                if (CheckMinReq())
                 {
-                    db.TblHastas.Add(tHasta);
-                    db.SaveChanges();
-
-                    var related_patient  = db.TblHastaDetayis.FirstOrDefault(x => x.HastaTC == tc);
+                    string tc = TxtTC.Text.Trim();
 
 
-                    related_patient.Yas = Convert.ToByte(DateTime.Now.Year - Convert.ToDateTime(DtBirthday.Text).Year);
-                    related_patient.KanGrubu = CmbBloodType.SelectedItem.ToString();
-                    related_patient.Kg = Convert.ToByte(TxtKg.Text);
-                    related_patient.Boy = Convert.ToByte(TxtSize.Text);
-                      
-                    db.SaveChanges();
+                    tHasta.TC = tc;
+                    tHasta.cinsiyet = CmbCinsiyet.SelectedItem.ToString();
+                    tHasta.Ad = TxtName.Text;
+                    tHasta.Soyad = TxtSurname.Text;
+                    tHasta.Telefon = TxtPhone.Text;
+                    tHasta.Email = TxtMail.Text;
+                    tHasta.Dogum_Tarihi = Convert.ToDateTime(DtBirthday.Text);
+                    tHasta.SGK = CmbSGK.SelectedItem.ToString() == "Var" ? true : false;
+                    tHasta.sifre = TxtPassword.Text;
+                    tHasta.Adres = TxtAddress.Text.Trim();
 
-                    ListAllPatients();
-                    ClearAllFields();
-                    MessageBox.Show("Hasta Eklendi", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                    if (!db.TblHastas.Any(x => x.TC == tc))
+                    {
+                        db.TblHastas.Add(tHasta);
+                        db.SaveChanges();
+
+                        var related_patient = db.TblHastaDetayis.FirstOrDefault(x => x.HastaTC == tc);
+
+
+                        related_patient.Yas = Convert.ToByte(DateTime.Now.Year - Convert.ToDateTime(DtBirthday.Text).Year);
+                        related_patient.KanGrubu = CmbBloodType.SelectedItem.ToString();
+                        related_patient.Kg = Convert.ToByte(TxtKg.Text);
+                        related_patient.Boy = Convert.ToByte(TxtSize.Text);
+
+                        db.SaveChanges();
+
+                        ListAllPatients();
+                        ClearAllFields();
+                        MessageBox.Show("Hasta Eklendi", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bu TC Kimlik Numarasına Ait Hasta Zaten Var", "Healore Medical", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
                 }
                 else
                 {
-                    MessageBox.Show("Bu TC Kimlik Numarasına Ait Hasta Zaten Var", "Healore Medical", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Kg veya boy değeri minumum ya da maximum aralığı dışında!", "Healore Medical", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
+              
            
             }
             else

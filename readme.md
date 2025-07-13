@@ -10,15 +10,16 @@ Healora, kişisel gelişim amacıyla prototip olarak geliştirilmiş, modüler y
 
 - Doktorlar ise günlük randevu listesini saat bazlı olarak görüntüleyebilir, hastaları sırasıyla kabul edebilir ve tedavi süreci için gerekli ilaç ve teşhis bilgilerini detaylı olarak kaydedebilir.
 
-<p>Programın çalışır halde bulunan video: {url}
+<p>Programın çalışır halde bulunan video: {https://youtu.be/I1IvXdikRns}
  
 # Proje Veritabanının Kurulumu ve Yapılandırılması
 <p>Uygulamanın veritabanını kendi SQL Server Management Studio ortamınıza eklemek için aşağıdaki adımları takip ediniz:</p>
 1. SQL Server Management Studio'yu açınız. <br>
-2. Sol kısımdaki Databases bölümüne sağ tıklayarak Import Data-tier Application seçeneğine tıklayınız.<br>
-3. Açılan sihirbazda Next butonuna tıklayarak devam ediniz.<br>
-4. Proje klasörüne gidip database klasörünü açınız.<br>
-5. Bu klasörde yer alan DbHealoraMedical.bacpac dosyasını seçerek içeri aktarım işlemini tamamlayınız.<br>
+2. Sol kısımdaki Databases bölümüne sağ tıklayarak Restore Database seçeneğine tıklayınız.<br>
+3. Açılan panelde Device radio butonuna tıklayıp yanındaki 3 noktaya tıklayınız.<br>
+4. Açılan panelde "Add" butonuna basınız.<br>
+5. Açılan dosya gezgininde "DbHealoraMedical.bak" dosyasını nereye koyduysanız onu bulup seçiniz.<br>
+6. Seçtikten sonra açık olan tüm panelerde okay, okay diyerek database kurunuz. <br>
 6. Ardından Visual Studio ortamında App.config dosyasını açınız. <br>
 7. ConnectionStrings etkiketinin içerisindeki datasource kısmına kendi local data base isminizi yazınız. <br>
 
