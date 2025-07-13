@@ -20,8 +20,8 @@ Healora, kişisel gelişim amacıyla prototip olarak geliştirilmiş, modüler y
 4. Açılan panelde "Add" butonuna basınız.<br>
 5. Açılan dosya gezgininde "DbHealoraMedical.bak" dosyasını nereye koyduysanız onu bulup seçiniz.<br>
 6. Seçtikten sonra açık olan tüm panelerde okay, okay diyerek database kurunuz. <br>
-6. Ardından Visual Studio ortamında App.config dosyasını açınız. <br>
-7. ConnectionStrings etkiketinin içerisindeki datasource kısmına kendi local data base isminizi yazınız. <br>
+7. Ardından Visual Studio ortamında App.config dosyasını açınız. <br>
+8. ConnectionStrings etkiketinin içerisindeki datasource kısmına kendi local data base isminizi yazınız. <br>
 
 Belirtilen adımları eksiksiz uyguladığınız takdirde proje sorunsuz bir şekilde çalışacaktır.
 
