@@ -1,4 +1,4 @@
-# Stok Takip Programı
+# Hastane Yönetim Otomasyonu
 
 Healora – Akıllı Hastane Otomasyon Sistemi
 
